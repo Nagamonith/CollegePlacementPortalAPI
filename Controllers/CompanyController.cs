@@ -42,8 +42,24 @@ public class CompanyController : ControllerBase
         company.EligiblePassoutYear = updated.EligiblePassoutYear;
         company.Description = updated.Description;
         company.Location = updated.Location;
+        company.Package = updated.Package;
+
 
         _context.SaveChanges();
         return Ok(company);
     }
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var company = _context.Companies.Find(id);
+        if (company == null)
+            return NotFound("Company not found");
+
+        _context.Companies.Remove(company);
+        _context.SaveChanges();
+
+        return Ok(new { message = "Company deleted successfully" });
+
+    }
+
 }

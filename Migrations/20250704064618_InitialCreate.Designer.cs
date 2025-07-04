@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CollegePlacementAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250703122601_InitialCreate")]
+    [Migration("20250704064618_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -129,7 +129,6 @@ namespace CollegePlacementAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ResumePath")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Skills")

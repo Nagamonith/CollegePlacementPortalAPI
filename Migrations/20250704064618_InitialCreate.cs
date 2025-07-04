@@ -80,7 +80,7 @@ namespace CollegePlacementAPI.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Backlogs = table.Column<int>(type: "int", nullable: false),
                     PassoutYear = table.Column<int>(type: "int", nullable: false),
-                    ResumePath = table.Column<string>(type: "longtext", nullable: false)
+                    ResumePath = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>

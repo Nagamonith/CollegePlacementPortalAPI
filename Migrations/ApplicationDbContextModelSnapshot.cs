@@ -126,7 +126,6 @@ namespace CollegePlacementAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ResumePath")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Skills")

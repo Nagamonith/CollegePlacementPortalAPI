@@ -12,5 +12,7 @@
         public int EligiblePassoutYear { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
+        public decimal Package { get; set; } 
+
     }
 }
