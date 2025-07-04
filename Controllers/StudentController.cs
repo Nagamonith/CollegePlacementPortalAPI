@@ -1,6 +1,7 @@
 ﻿using CollegePlacementAPI.Data;
 using CollegePlacementAPI.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Linq;
@@ -95,6 +96,32 @@ namespace CollegePlacementAPI.Controllers
 
             _context.SaveChanges();
             return Ok(student);
+        }
+
+        // ------------------------
+        // DELETE: api/Student/{id}
+        // ------------------------
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var student = _context.Students.Find(id);
+            if (student == null)
+                return NotFound("Student not found");
+
+            // Delete associated resume file if it exists
+            if (!string.IsNullOrEmpty(student.ResumePath))
+            {
+                var resumeFullPath = Path.Combine(_env.ContentRootPath, student.ResumePath);
+                if (System.IO.File.Exists(resumeFullPath))
+                {
+                    System.IO.File.Delete(resumeFullPath);
+                }
+            }
+
+            _context.Students.Remove(student);
+            _context.SaveChanges();
+
+            return Ok(new { message = "Student deleted successfully" });
         }
     }
 }
